@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:front/models/c_post.dart';
 import 'package:front/models/users/c_user.dart';
 import 'package:front/models/widgets/cv_tile.dart';
@@ -58,6 +59,7 @@ class _CvHomeState extends State<CvHome> {
         user: entreprise,
         post: randompost,
         afficheVoirButton: true,
+        vuepost: false,
       ));
       listEntreprise.add(const Padding(padding: EdgeInsets.only(bottom: 15)));
     }
@@ -65,9 +67,19 @@ class _CvHomeState extends State<CvHome> {
       user: widget.user,
       post: randompost2,
       afficheVoirButton: true,
+      vuepost: false,
     ));
+    final String assetname = "assets/logo_waterhub.svg";
+
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: SvgPicture.asset(
+          assetname, // Remplacez par le chemin de votre fichier SVG
+          width: 40, // Définissez la largeur selon vos besoins
+          height: 40, // Définissez la hauteur selon vos besoins
+          allowDrawingOutsideViewBox: true,
+        ),
+      ),
       body: Column(
         children: [
           Center(

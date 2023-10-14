@@ -60,22 +60,39 @@ class CvTile extends StatelessWidget {
                 )
               : (const SizedBox()),
           const Padding(padding: EdgeInsets.only(bottom: 30)),
-          afficheVoirButton
-              ? CwButton(
-                  "Voir l'offre",
-                  style: Theme.of(context).textTheme.bodyLarge,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CvPost(
-                                post: post,
-                                user: user,
-                              )),
-                    );
-                  },
-                )
-              : (SizedBox()),
+          (vuepost == false)
+              ? ((afficheVoirButton
+                  ? CwButton(
+                      "Voir l'offre",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CvPost(
+                                    post: post,
+                                    user: user,
+                                  )),
+                        );
+                      },
+                    )
+                  : (SizedBox())))
+              : ((post.user == user)
+                  ? (SizedBox())
+                  : (CwButton(
+                      "Demande de Réservation",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CvPost(
+                                    post: post,
+                                    user: user,
+                                  )),
+                        );
+                      },
+                    ))),
         ],
       ),
     );

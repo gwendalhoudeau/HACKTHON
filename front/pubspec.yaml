@@ -16,6 +16,7 @@ dependencies:
   color_blindness : any
   random_color_scheme: any
   url_launcher: any
+  flutter_svg: ^0.22.0 # Assurez-vous d'utiliser la version appropriée
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding
@@ -27,4 +28,10 @@ dev_dependencies:
 flutter:
   assets:
     - .env
+    - assets/logo_waterhub.svg
   uses-material-design: true
+flutter_icons:
+  android: true
+  ios: false
+  windows: true
+  image_path: "assets/logo_waterhub.svg"

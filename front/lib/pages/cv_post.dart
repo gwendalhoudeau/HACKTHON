@@ -47,6 +47,7 @@ class _CvPostState extends State<CvPost> {
                   user: widget.user,
                   post: widget.post,
                   afficheVoirButton: false,
+                  vuepost: true,
                 ),
               ],
             ),

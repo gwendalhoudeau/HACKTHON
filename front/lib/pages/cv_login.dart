@@ -9,6 +9,7 @@ import 'package:front/utils/c_theme_provider.dart';
 import 'package:front/widgets/cw_button.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CvLogin extends StatefulWidget {
   const CvLogin({super.key});
@@ -42,9 +43,26 @@ class _CvLoginState extends State<CvLogin> {
   };
   @override
   Widget build(BuildContext context) {
+    final String assetname = "assets/logo_waterhub.svg";
+    debugPrint(assetname);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Connexion'),
+        leading: SvgPicture.asset(
+          assetname, // Remplacez par le chemin de votre fichier SVG
+          width: 40, // Définissez la largeur selon vos besoins
+          height: 40, // Définissez la hauteur selon vos besoins
+          allowDrawingOutsideViewBox: true,
+        ), // Icône de profil (remplacez 'chemin_vers_votre_image' par le chemin de votre image)
+        title: const Text('WaterHub'), // Titre de l'AppBar
+        actions: [
+          IconButton(
+            icon: Icon(Icons
+                .person), // Remplacez 'profile' par l'icône que vous souhaitez utiliser
+            onPressed: () {
+              // Action à exécuter lorsque l'icône de profil est cliquée
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
