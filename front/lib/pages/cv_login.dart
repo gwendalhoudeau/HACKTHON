@@ -5,8 +5,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:front/models/users/c_user.dart';
 import 'package:front/pages/cv_home.dart';
 import 'package:front/pages/cv_post.dart';
+import 'package:front/utils/c_theme_provider.dart';
 import 'package:front/widgets/cw_button.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 
 class CvLogin extends StatefulWidget {
   const CvLogin({super.key});
@@ -49,21 +51,25 @@ class _CvLoginState extends State<CvLogin> {
           const SizedBox(height: 16.0),
           CwButton(
             "se connecter",
+            style: Theme.of(context).textTheme.bodySmall,
             onPressed: () {
               form = "login";
               setState(() {});
             },
-            colorBackground:
-                (form == "login") ? (Colors.blue) : (Colors.transparent),
+            colorBackground: (form == "login")
+                ? (Theme.of(context).primaryColor)
+                : (Colors.transparent),
           ),
           CwButton(
             "s'inscrire",
+            style: Theme.of(context).textTheme.bodySmall,
             onPressed: () {
               form = "register";
               setState(() {});
             },
-            colorBackground:
-                (form == "register") ? (Colors.blue) : (Colors.transparent),
+            colorBackground: (form == "register")
+                ? (Theme.of(context).primaryColor)
+                : (Colors.transparent),
           ),
           const Spacer(),
           Padding(
@@ -94,7 +100,9 @@ class _CvLoginState extends State<CvLogin> {
                           obscureText: true,
                           style: Theme.of(context).textTheme.bodyLarge),
                       const SizedBox(height: 32.0),
-                      CwButton("Se Connecter", onPressed: () async {
+                      CwButton("Se Connecter",
+                          style: Theme.of(context).textTheme.bodySmall,
+                          onPressed: () async {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -160,7 +168,10 @@ class _CvLoginState extends State<CvLogin> {
                           style: Theme.of(context).textTheme.bodyLarge),
                       const SizedBox(height: 32.0),
                       CheckboxListTile(
-                        title: Text("Je suis un consommateur"),
+                        title: Text(
+                          "Je suis un consommateur",
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
                         value:
                             isConsumer, // Vous devez définir isConsumer comme une variable booléenne
                         onChanged: (newValue) {
@@ -171,7 +182,10 @@ class _CvLoginState extends State<CvLogin> {
                         controlAffinity: ListTileControlAffinity.leading,
                       ),
                       CheckboxListTile(
-                        title: Text("Je suis une entreprise"),
+                        title: Text(
+                          "Je suis une entreprise",
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
                         value:
                             !isConsumer, // Vous devez définir isBusiness comme une variable booléenne
                         onChanged: (newValue) {
@@ -181,7 +195,9 @@ class _CvLoginState extends State<CvLogin> {
                         },
                         controlAffinity: ListTileControlAffinity.leading,
                       ),
-                      CwButton("S'inscrire", onPressed: () async {
+                      CwButton("S'inscrire",
+                          style: Theme.of(context).textTheme.bodySmall,
+                          onPressed: () async {
                         Map<String, dynamic> requestData = {
                           'pseudo': username,
                           'email': email,
@@ -199,6 +215,48 @@ class _CvLoginState extends State<CvLogin> {
           ),
           const Spacer(),
         ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color:
+            Theme.of(context).primaryColor, // Couleur de fond du pied de page
+        child: Container(
+          height: 50.0, // Hauteur du pied de page
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Centre les enfants horizontalement
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .daltonism();
+                    },
+                    child: Icon(Icons.remove_red_eye),
+                  ),
+                ),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .toggleTheme();
+                    },
+                    child: Icon(Icons.brightness_3),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -28,31 +28,41 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          color: Colors.lightBlue, // Couleur de l'app bar (header)
-        ),
-        primaryColor: Colors.blue, // Couleur principale de l'application
-        scaffoldBackgroundColor: Colors.white,
-        fontFamily: 'Roboto', // Police par défaut
-        textTheme: const TextTheme(
-          bodyLarge: TextStyle(
-            fontSize: 16.0,
-            color: Colors.blue,
-          ), // Style de texte par défaut
-          titleLarge: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ), // Style de titre
-        ),
-      ),
-      home: const CvLogin(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          title: 'Flutter Demo',
+          theme: themeProvider.currentTheme,
+          home: CvLogin(),
+        );
+      },
     );
   }
 }
+
+
+
+
+/*ThemeData(
+          appBarTheme: const AppBarTheme(
+            color: Colors.lightBlue, // Couleur de l'app bar (header)
+          ),
+          primaryColor: Colors.blue, // Couleur principale de l'application
+          scaffoldBackgroundColor: Colors.white,
+          fontFamily: 'Roboto', // Police par défaut
+          textTheme: const TextTheme(
+            bodyLarge: TextStyle(
+              fontSize: 16.0,
+              color: Colors.blue,
+            ), // Style de texte par défaut
+            titleLarge: TextStyle(
+              fontSize: 24.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ), // Style de titre
+          ),
+        )*/

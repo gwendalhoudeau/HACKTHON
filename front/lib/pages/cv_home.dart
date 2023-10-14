@@ -86,7 +86,8 @@ class _CvHomeState extends State<CvHome> {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blue, // Couleur de fond du pied de page
+        color:
+            Theme.of(context).primaryColor, // Couleur de fond du pied de page
         child: Container(
           height: 50.0, // Hauteur du pied de page
           alignment: Alignment.center,
@@ -99,7 +100,21 @@ class _CvHomeState extends State<CvHome> {
                   padding: const EdgeInsets.all(2.0),
                   child: FloatingActionButton(
                     backgroundColor: Colors.white,
-                    foregroundColor: Colors.blue,
+                    foregroundColor: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .daltonism();
+                    },
+                    child: Icon(Icons.remove_red_eye),
+                  ),
+                ),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Theme.of(context).primaryColor,
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -117,16 +132,16 @@ class _CvHomeState extends State<CvHome> {
                 child: Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: FloatingActionButton(
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.blue,
+                    backgroundColor: Colors.white,
+                    foregroundColor: Theme.of(context).primaryColor,
                     onPressed: () {
                       Provider.of<ThemeProvider>(context, listen: false)
                           .toggleTheme();
                     },
-                    child: Icon(Icons.add),
+                    child: Icon(Icons.brightness_3),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

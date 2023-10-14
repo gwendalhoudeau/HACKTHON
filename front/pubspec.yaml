@@ -13,6 +13,9 @@ dependencies:
   http: any
   shared_preferences: ^2.0.6
   provider: any
+  color_blindness : any
+  random_color_scheme: any
+  url_launcher: any
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding

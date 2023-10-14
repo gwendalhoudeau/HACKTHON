@@ -9,11 +9,13 @@ class CvTile extends StatelessWidget {
   final CPost post;
   final CUser user;
   final bool afficheVoirButton;
+  final bool vuepost;
 
   const CvTile({
     required this.user,
     required this.post,
     required this.afficheVoirButton,
+    required this.vuepost,
   });
 
   @override
@@ -29,7 +31,8 @@ class CvTile extends StatelessWidget {
           horizontal: 15), // Utilisez margin au lieu de padding
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.black, // Couleur de la bordure
+          color:
+              Theme.of(context).secondaryHeaderColor, // Couleur de la bordure
           width: 1.0, // Largeur de la bordure
         ),
         borderRadius: const BorderRadius.all(Radius.circular(30)),

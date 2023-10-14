@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:front/models/c_post.dart';
 import 'package:front/models/users/c_user.dart';
+import 'package:front/utils/c_theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class CvCreatePost extends StatefulWidget {
   final CUser user;
@@ -75,8 +77,55 @@ class _CvCreatePostState extends State<CvCreatePost> {
                 }
               },
               child: Text('Créer le Post'),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    Theme.of(context)
+                        .primaryColor), // Couleur de fond personnalisée
+              ),
             ),
           ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color:
+            Theme.of(context).primaryColor, // Couleur de fond du pied de page
+        child: Container(
+          height: 50.0, // Hauteur du pied de page
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Centre les enfants horizontalement
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .daltonism();
+                    },
+                    child: Icon(Icons.remove_red_eye),
+                  ),
+                ),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .toggleTheme();
+                    },
+                    child: Icon(Icons.brightness_3),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

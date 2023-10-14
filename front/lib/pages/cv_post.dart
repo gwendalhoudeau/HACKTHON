@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:front/models/c_post.dart';
 import 'package:front/models/users/c_user.dart';
 import 'package:front/models/widgets/cv_tile.dart';
+import 'package:front/utils/c_theme_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CvPost extends StatefulWidget {
@@ -55,6 +57,48 @@ class _CvPostState extends State<CvPost> {
           ),
         ],
       ),
+      bottomNavigationBar: BottomAppBar(
+        color:
+            Theme.of(context).primaryColor, // Couleur de fond du pied de page
+        child: Container(
+          height: 50.0, // Hauteur du pied de page
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Centre les enfants horizontalement
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .daltonism();
+                    },
+                    child: Icon(Icons.remove_red_eye),
+                  ),
+                ),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Theme.of(context).primaryColor,
+                    onPressed: () {
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .toggleTheme();
+                    },
+                    child: Icon(Icons.brightness_3),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -66,6 +110,10 @@ class _CvPostState extends State<CvPost> {
           decoration: InputDecoration(labelText: 'Nouveau message'),
         ),
         ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context)
+                .primaryColor), // Couleur de fond personnalisée
+          ),
           onPressed: () {
             String newMessage =
                 "${widget.user.userName} : ${messageController.text}";
@@ -84,7 +132,10 @@ class _CvPostState extends State<CvPost> {
             itemCount: messages.length,
             itemBuilder: (context, index) {
               return ListTile(
-                title: Text(messages[index]),
+                title: Text(
+                  messages[index],
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
               );
             },
           ),
