@@ -12,7 +12,7 @@ const { findById } = require('./models/post.model');
 const app = express();
 
 const corsOptions = {
-    origin: process.env.CLIENT_URL,
+    origin: '*',
     credentials:true,
     'allowHeaders':['sessionId','Content-Type'],
     'exposeHeaders':['sessionId'],
@@ -20,13 +20,13 @@ const corsOptions = {
     'preflightContinue':false
 }
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions))  
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 
-app.get('*',checkUser)
+app.get('*',checkUser) 
 app.get('/jwtid',requireAuth, (req,res) => {
     res.status(200).send(res.locals.user._id)
 })

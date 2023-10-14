@@ -3,8 +3,11 @@ import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:front/pages/cv_login.dart';
 import 'package:window_size/window_size.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
+  debugPrint(dotenv.env['API_URL']);
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows) {
     setWindowMaxSize(const Size(1024, 768));
@@ -14,11 +17,6 @@ void main() {
           Rect.fromCenter(center: Offset(1000, 500), width: 600, height: 1000));
     });
   }
-  //setWindowMinSize(const Size(200, 200));
-  //setWindowMaxSize(const Size(300, 300));
-  /*if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    DesktopWindow.setMinWindowSize(const Size(800, 600));
-  }*/
   runApp(const MyApp());
 }
 

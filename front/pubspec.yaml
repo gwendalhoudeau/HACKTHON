@@ -9,6 +9,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   desktop_window: any
+  flutter_dotenv: ^5.0.2
+  http: any
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding
@@ -18,4 +20,6 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
 flutter:
+  assets:
+    - .env
   uses-material-design: true

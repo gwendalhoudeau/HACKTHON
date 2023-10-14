@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:front/pages/cv_home.dart';
 import 'package:front/widgets/cw_button.dart';
+import 'package:http/http.dart';
 
 class CvLogin extends StatefulWidget {
   const CvLogin({super.key});
@@ -12,6 +16,13 @@ class CvLogin extends StatefulWidget {
 class _CvLoginState extends State<CvLogin> {
   String form = "login";
   bool isConsumer = true;
+  String? username;
+  String? email = "testpseudo@outlook.fr";
+  String? password = "sgqrgegherahqgrsq";
+  Map<String, dynamic> requestData = {
+    'email': "testpseudo@outlook.fr",
+    'password': "sgqrgegherahqgrsq",
+  };
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,11 +77,14 @@ class _CvLoginState extends State<CvLogin> {
                           obscureText: true,
                           style: Theme.of(context).textTheme.bodyLarge),
                       const SizedBox(height: 32.0),
-                      CwButton("Se Connecter", onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CvHome()),
-                        );
+                      CwButton("Se Connecter", onPressed: () async {
+                        final response = await post(
+                            Uri.parse(
+                                "${dotenv.env['API_URL']}/api/user/login"),
+                            body: jsonEncode(
+                                requestData), // Convertit les données en JSON
+                            headers: {'Content-Type': 'application/json'});
+                        debugPrint(response.body);
                       })
                     ]
                   : [
