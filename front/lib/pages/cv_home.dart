@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:front/widgets/cw_button.dart';
+import 'package:front/models/users/c_entreprise.dart';
+import 'package:front/models/widgets/cv_tile.dart';
 
 class CvHome extends StatefulWidget {
   const CvHome({super.key});
@@ -9,34 +10,39 @@ class CvHome extends StatefulWidget {
 }
 
 class _CvHomeState extends State<CvHome> {
+  CEntreprise entreprise = CEntreprise(
+    email: 'email_entreprise@example.com',
+    password: 'mot_de_passe_entreprise',
+    userName: 'Nom de l\'entreprise',
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Connexion'),
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              // Ajoutez ici vos widgets de la liste
+              Text('Widget 1'),
+              Text('Widget 2'),
+              CvTile(
+                user: entreprise,
+              ),
+              // ...
+            ],
+          ),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextFormField(
-              onChanged: (text) {
-                setState(() {});
-              },
-              decoration: const InputDecoration(labelText: 'Adresse Email'),
-            ),
-            const SizedBox(height: 16.0),
-            TextFormField(
-              onChanged: (text) {
-                setState(() {});
-              },
-              decoration: InputDecoration(labelText: 'Mot de passe'),
-              obscureText: true,
-            ),
-            const SizedBox(height: 32.0),
-            CwButton("Se Connecter", onPressed: () {})
-          ],
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue, // Couleur de fond du pied de page
+        child: Container(
+          height: 50.0, // Hauteur du pied de page
+          alignment: Alignment.center,
+          child: const Text(
+            'Pied de page',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ),
     );
