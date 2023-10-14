@@ -3,7 +3,7 @@ import 'package:front/models/users/c_entreprise.dart';
 import 'package:front/models/widgets/cv_tile.dart';
 
 class CvHome extends StatefulWidget {
-  const CvHome({super.key});
+  CvHome({super.key});
 
   @override
   State<CvHome> createState() => _CvHomeState();
@@ -13,26 +13,38 @@ class _CvHomeState extends State<CvHome> {
   CEntreprise entreprise = CEntreprise(
     email: 'email_entreprise@example.com',
     password: 'mot_de_passe_entreprise',
-    userName: 'Nom de l\'entreprise',
+    userName: 'limagrin',
+    locate: "clermont",
+    quantity: 50,
   );
+
+  List<Widget> listEntreprise = [];
+
   @override
   Widget build(BuildContext context) {
+    for (int i = 0; i < 10; i++) {
+      listEntreprise.add(CvTile(user: entreprise));
+      listEntreprise.add(const Padding(padding: EdgeInsets.only(bottom: 15)));
+    }
+    debugPrint(listEntreprise.toString());
     return Scaffold(
       appBar: AppBar(),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              // Ajoutez ici vos widgets de la liste
-              Text('Widget 1'),
-              Text('Widget 2'),
-              CvTile(
-                user: entreprise,
-              ),
-              // ...
-            ],
+      body: Column(
+        children: [
+          Center(
+            child: Text(
+              "Offres Disponibles",
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
           ),
-        ),
+          const Padding(padding: EdgeInsets.only(bottom: 30)),
+          Expanded(
+            child: ListView(
+              children: listEntreprise,
+            ),
+          ),
+          const Padding(padding: EdgeInsets.only(bottom: 30)),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.blue, // Couleur de fond du pied de page

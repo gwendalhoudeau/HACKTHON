@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front/models/users/c_entreprise.dart';
 import 'package:front/models/users/ca_users.dart';
 
 class CvTile extends StatelessWidget {
@@ -10,6 +11,9 @@ class CvTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String action =
+        (user is CEntreprise) ? ("quantité d'eau disponible") : ("");
+
     double screenWidth = MediaQuery.of(context).size.width;
     double containerWidth = screenWidth * 0.95;
     return Container(
@@ -27,13 +31,23 @@ class CvTile extends StatelessWidget {
             CrossAxisAlignment.start, // Aligner le contenu à gauche
         children: [
           Text(
-            "${user.label} : ${user.userName}",
+            "type : ${user.label}",
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           Text(
-            "${user.label} : ${user.userName}",
+            "${user.userName}",
             style: Theme.of(context).textTheme.bodyLarge,
           ),
+          Text(
+            "$action : ${user.quantity} L",
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          (user is CEntreprise)
+              ? Text(
+                  "localisation : ${user.locate}",
+                  style: Theme.of(context).textTheme.bodyLarge,
+                )
+              : (const SizedBox()),
         ],
       ),
     );

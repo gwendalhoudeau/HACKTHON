@@ -15,10 +15,13 @@ class CEntreprise extends CaUsers {
   @override
   final int? quantity;
 
+  final String locate;
+
   CEntreprise({
     required this.email,
     required this.password,
     required this.userName,
+    required this.locate,
     this.quantity,
   });
 
@@ -27,6 +30,7 @@ class CEntreprise extends CaUsers {
     String? email,
     String? password,
     String? label,
+    String? locate,
     int? quantity,
   }) {
     return CEntreprise(
@@ -34,6 +38,7 @@ class CEntreprise extends CaUsers {
       password: password ?? this.password,
       userName: userName ?? this.userName,
       quantity: quantity ?? this.quantity,
+      locate: locate ?? this.locate,
     );
   }
 }

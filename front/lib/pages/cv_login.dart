@@ -42,7 +42,7 @@ class _CvLoginState extends State<CvLogin> {
             CwButton("Se Connecter", onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const CvHome()),
+                MaterialPageRoute(builder: (context) => CvHome()),
               );
             })
           ],

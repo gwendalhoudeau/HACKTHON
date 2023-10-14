@@ -12,9 +12,13 @@ class Consumers extends CaUsers {
   @override
   String password;
 
+  @override
+  final int? quantity;
+
   Consumers({
     required this.email,
     required this.password,
     required this.userName,
+    this.quantity,
   });
 }
