@@ -11,6 +11,7 @@ dependencies:
   desktop_window: any
   flutter_dotenv: ^5.0.2
   http: any
+  shared_preferences: ^2.0.6
   window_size:
     git:
       url: https://github.com/google/flutter-desktop-embedding
