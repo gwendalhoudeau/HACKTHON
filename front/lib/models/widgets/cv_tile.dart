@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:front/models/users/c_user.dart';
 import 'package:front/models/users/ca_users.dart';
+=======
+import 'package:front/models/c_post.dart';
+import 'package:front/models/users/c_entreprise.dart';
+import 'package:front/pages/cv_post.dart';
+>>>>>>> ecc35e6b49cf3a220a9da3d2876ffe94ac419a08
 import 'package:front/widgets/cw_button.dart';
 
 class CvTile extends StatelessWidget {
+  final CPost post;
   final CUser user;
+  final bool afficheVoirButton;
 
   const CvTile({
     required this.user,
+    required this.post,
+    required this.afficheVoirButton,
   });
 
   @override
   Widget build(BuildContext context) {
-    String action = (user is CUser) ? ("quantité d'eau disponible") : ("");
+    String action = (post is CPost) ? ("quantité d'eau disponible") : ("");
 
     double screenWidth = MediaQuery.of(context).size.width;
     double containerWidth = screenWidth * 0.95;
     return Container(
       width: containerWidth,
       padding: const EdgeInsets.symmetric(horizontal: 15),
+      margin: const EdgeInsets.symmetric(
+          horizontal: 15), // Utilisez margin au lieu de padding
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.black, // Couleur de la bordure
@@ -31,29 +43,40 @@ class CvTile extends StatelessWidget {
             CrossAxisAlignment.start, // Aligner le contenu à gauche
         children: [
           Text(
-            "type : ${user.label}",
+            "type : ${post.user.label}",
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           Text(
-            "${user.userName}",
+            "${post.user.userName}",
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           Text(
-            "$action : ${user.quantity} L",
+            "$action : ${post.quantity} L",
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          (user is CUser)
+          (post is CPost)
               ? Text(
-                  "localisation : ${user.locate}",
+                  "localisation : ${post.locate}",
                   style: Theme.of(context).textTheme.bodyLarge,
                 )
               : (const SizedBox()),
           const Padding(padding: EdgeInsets.only(bottom: 30)),
-          CwButton(
-            "Voir l'offre",
-            style: Theme.of(context).textTheme.bodyLarge,
-            onPressed: () {},
-          ),
+          afficheVoirButton
+              ? CwButton(
+                  "Voir l'offre",
+                  style: Theme.of(context).textTheme.bodyLarge,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => CvPost(
+                                post: post,
+                                user: user,
+                              )),
+                    );
+                  },
+                )
+              : (SizedBox()),
         ],
       ),
     );

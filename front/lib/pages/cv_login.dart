@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:front/models/users/c_user.dart';
+import 'package:front/models/users/c_entreprise.dart';
 import 'package:front/pages/cv_home.dart';
 import 'package:front/widgets/cw_button.dart';
 import 'package:http/http.dart';
@@ -20,6 +20,13 @@ class CvLogin extends StatefulWidget {
 }*/
 
 class _CvLoginState extends State<CvLogin> {
+  CUser user = CUser(
+    id: "id",
+    email: "email",
+    password: "password",
+    userName: "utilisateur",
+    locate: "locate",
+  );
   String form = "login";
   bool isConsumer = true;
   String? username;
