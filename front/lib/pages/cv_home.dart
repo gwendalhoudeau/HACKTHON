@@ -53,9 +53,24 @@ class _CvHomeState extends State<CvHome> {
         child: Container(
           height: 50.0, // Hauteur du pied de page
           alignment: Alignment.center,
-          child: const Text(
-            'Pied de page',
-            style: TextStyle(color: Colors.white),
+          child: Row(
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Centre les enfants horizontalement
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.blue,
+                    onPressed: () {
+                      // Respond to button press
+                    },
+                    child: Icon(Icons.add),
+                  ),
+                ),
+              )
+            ],
           ),
         ),
       ),
