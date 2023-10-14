@@ -6,11 +6,13 @@ class CwButton extends StatelessWidget {
   final Color? colorText;
   final Function() onPressed;
   final bool parentSizeHorizontal;
+  final TextStyle? style;
 
   const CwButton(
     this.text, {
     Key? key,
     required this.onPressed,
+    this.style,
     this.colorText,
     this.colorBackground,
     this.parentSizeHorizontal = true,
@@ -32,9 +34,9 @@ class CwButton extends StatelessWidget {
             alignment: parentSizeHorizontal ? Alignment.center : null,
             child: Text(
               text,
+
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: colorText), // Style de texte avec la couleur spécifiée
+              style: style, // Style de texte avec la couleur spécifiée
             ),
           ),
         ),
