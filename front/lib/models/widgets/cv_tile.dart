@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:front/models/users/c_entreprise.dart';
+import 'package:front/models/users/c_user.dart';
 import 'package:front/models/users/ca_users.dart';
 import 'package:front/widgets/cw_button.dart';
 

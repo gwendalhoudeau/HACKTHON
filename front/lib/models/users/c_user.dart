@@ -7,18 +7,18 @@ class CUser {
 
   String email;
 
-  String password;
+  String? password;
 
   final int? quantity;
 
-  final String locate;
+  final String? locate;
 
   CUser({
     required this.id,
     required this.email,
-    required this.password,
+    this.password,
     required this.userName,
-    required this.locate,
+    this.locate,
     this.quantity,
   });
 

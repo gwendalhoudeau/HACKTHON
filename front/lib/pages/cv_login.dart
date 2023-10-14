@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:front/models/users/c_user.dart';
 import 'package:front/pages/cv_home.dart';
 import 'package:front/widgets/cw_button.dart';
 import 'package:http/http.dart';
@@ -13,15 +14,21 @@ class CvLogin extends StatefulWidget {
   State<CvLogin> createState() => _CvLoginState();
 }
 
+/*{
+  "email": "testpseudo@outlook.fr",
+  "password": "sgqrgegherahqgrsq"
+}*/
+
 class _CvLoginState extends State<CvLogin> {
   String form = "login";
   bool isConsumer = true;
   String? username;
-  String? email = "testpseudo@outlook.fr";
-  String? password = "sgqrgegherahqgrsq";
-  Map<String, dynamic> requestData = {
-    'email': "testpseudo@outlook.fr",
-    'password': "sgqrgegherahqgrsq",
+  String? email;
+  String? password;
+  String jwt = dotenv.env['JWT']!;
+  var headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ${dotenv.env["JWT"]}',
   };
   @override
   Widget build(BuildContext context) {
@@ -59,6 +66,7 @@ class _CvLoginState extends State<CvLogin> {
                   ? [
                       TextFormField(
                           onChanged: (text) {
+                            email = text;
                             setState(() {});
                           },
                           decoration:
@@ -70,6 +78,7 @@ class _CvLoginState extends State<CvLogin> {
                       const SizedBox(height: 16.0),
                       TextFormField(
                           onChanged: (text) {
+                            password = text;
                             setState(() {});
                           },
                           decoration:
@@ -78,18 +87,32 @@ class _CvLoginState extends State<CvLogin> {
                           style: Theme.of(context).textTheme.bodyLarge),
                       const SizedBox(height: 32.0),
                       CwButton("Se Connecter", onPressed: () async {
+                        Map<String, dynamic> requestData = {
+                          'email': email,
+                          'password': password,
+                        };
                         final response = await post(
                             Uri.parse(
                                 "${dotenv.env['API_URL']}/api/user/login"),
                             body: jsonEncode(
                                 requestData), // Convertit les données en JSON
-                            headers: {'Content-Type': 'application/json'});
-                        debugPrint(response.body);
+                            headers: headers);
+
+                        Map<String, dynamic> jsonResponse =
+                            json.decode(response.body);
+
+                        if (response.statusCode == 200) {
+                          CUser user = CUser(
+                              id: jsonResponse['id'],
+                              email: jsonResponse['email'],
+                              userName: jsonResponse['pseudo']);
+                        }
                       })
                     ]
                   : [
                       TextFormField(
                           onChanged: (text) {
+                            email = text;
                             setState(() {});
                           },
                           decoration:
@@ -101,6 +124,7 @@ class _CvLoginState extends State<CvLogin> {
                       const SizedBox(height: 16.0),
                       TextFormField(
                           onChanged: (text) {
+                            username = text;
                             setState(() {});
                           },
                           decoration: const InputDecoration(
@@ -112,6 +136,7 @@ class _CvLoginState extends State<CvLogin> {
                       const SizedBox(height: 16.0),
                       TextFormField(
                           onChanged: (text) {
+                            password = text;
                             setState(() {});
                           },
                           decoration:
@@ -141,11 +166,18 @@ class _CvLoginState extends State<CvLogin> {
                         },
                         controlAffinity: ListTileControlAffinity.leading,
                       ),
-                      CwButton("S'inscrire", onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => CvHome()),
-                        );
+                      CwButton("S'inscrire", onPressed: () async {
+                        Map<String, dynamic> requestData = {
+                          'pseudo': username,
+                          'email': email,
+                          'password': password,
+                        };
+                        final response = await post(
+                            Uri.parse(
+                                "${dotenv.env['API_URL']}/api/user/register"),
+                            body: jsonEncode(
+                                requestData), // Convertit les données en JSON
+                            headers: headers);
                       })
                     ],
             ),
