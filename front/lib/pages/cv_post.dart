@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front/models/c_post.dart';
-import 'package:front/models/users/c_entreprise.dart';
+import 'package:front/models/users/c_user.dart';
 import 'package:front/models/widgets/cv_tile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

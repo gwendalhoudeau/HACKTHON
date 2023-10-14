@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-<<<<<<< HEAD
-import 'package:front/models/users/c_user.dart';
-=======
 import 'package:front/models/c_post.dart';
-import 'package:front/models/users/c_entreprise.dart';
->>>>>>> ecc35e6b49cf3a220a9da3d2876ffe94ac419a08
+import 'package:front/models/users/c_user.dart';
 import 'package:front/models/widgets/cv_tile.dart';
 import 'package:front/pages/cv_createPost.dart';
 import 'package:front/utils/c_theme_provider.dart';

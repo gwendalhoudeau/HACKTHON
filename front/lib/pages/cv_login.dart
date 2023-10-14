@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:front/models/users/c_entreprise.dart';
+import 'package:front/models/users/c_user.dart';
 import 'package:front/pages/cv_home.dart';
+import 'package:front/pages/cv_post.dart';
 import 'package:front/widgets/cw_button.dart';
 import 'package:http/http.dart';
 
@@ -94,6 +95,13 @@ class _CvLoginState extends State<CvLogin> {
                           style: Theme.of(context).textTheme.bodyLarge),
                       const SizedBox(height: 32.0),
                       CwButton("Se Connecter", onPressed: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CvHome(
+                                    user: user,
+                                  )),
+                        );
                         Map<String, dynamic> requestData = {
                           'email': email,
                           'password': password,

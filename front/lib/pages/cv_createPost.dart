@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front/models/c_post.dart';
-import 'package:front/models/users/c_entreprise.dart';
+import 'package:front/models/users/c_user.dart';
 
 class CvCreatePost extends StatefulWidget {
   final CUser user;

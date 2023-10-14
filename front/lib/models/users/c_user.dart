@@ -1,5 +1,3 @@
-import 'package:front/models/users/ca_users.dart';
-
 class CUser {
   String id;
   String get label => "entreprise";
