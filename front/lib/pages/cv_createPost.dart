@@ -60,6 +60,7 @@ class _CvCreatePostState extends State<CvCreatePost> {
 
                   // Maintenant, vous pouvez créer un nouvel objet Post avec les données entrées
                   final newPost = CPost(
+                    id: "id",
                     user: widget.user,
                     locate: _locate,
                     quantity: _quantity,

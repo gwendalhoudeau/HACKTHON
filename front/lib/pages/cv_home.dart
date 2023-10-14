@@ -4,7 +4,9 @@ import 'package:front/models/c_post.dart';
 import 'package:front/models/users/c_entreprise.dart';
 import 'package:front/models/widgets/cv_tile.dart';
 import 'package:front/pages/cv_createPost.dart';
+import 'package:front/utils/c_theme_provider.dart';
 import 'package:front/widgets/cw_button.dart';
+import 'package:provider/provider.dart';
 
 class CvHome extends StatefulWidget {
   final CUser user;
@@ -15,6 +17,7 @@ class CvHome extends StatefulWidget {
 
 class _CvHomeState extends State<CvHome> {
   late CPost randompost;
+  late CPost randompost2;
   CUser entreprise = CUser(
     id: "idtest",
     email: 'email_entreprise@example.com',
@@ -27,12 +30,20 @@ class _CvHomeState extends State<CvHome> {
   @override
   void initState() {
     super.initState();
+    debugPrint(widget.user.toString());
 
     // Initialiser randompost avec widget.user dans initState
     randompost = CPost(
+      id: "id1",
       user: widget.user,
       locate: "locate",
       quantity: 100,
+    );
+    randompost2 = CPost(
+      id: "id2",
+      user: entreprise,
+      locate: "locasdfsfsdfsdfsdfsdfte",
+      quantity: 546546546465464,
     );
   }
 
@@ -42,14 +53,19 @@ class _CvHomeState extends State<CvHome> {
   Widget build(BuildContext context) {
     debugPrint(dotenv.env['API_URL']);
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 2; i++) {
       listEntreprise.add(CvTile(
-        user: widget.user,
+        user: entreprise,
         post: randompost,
         afficheVoirButton: true,
       ));
       listEntreprise.add(const Padding(padding: EdgeInsets.only(bottom: 15)));
     }
+    listEntreprise.add(CvTile(
+      user: widget.user,
+      post: randompost2,
+      afficheVoirButton: true,
+    ));
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -92,6 +108,20 @@ class _CvHomeState extends State<CvHome> {
                                   user: widget.user,
                                 )),
                       );
+                    },
+                    child: Icon(Icons.add),
+                  ),
+                ),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: FloatingActionButton(
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.blue,
+                    onPressed: () {
+                      Provider.of<ThemeProvider>(context, listen: false)
+                          .toggleTheme();
                     },
                     child: Icon(Icons.add),
                   ),

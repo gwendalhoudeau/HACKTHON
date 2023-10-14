@@ -2,8 +2,10 @@ import 'dart:io';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:front/pages/cv_login.dart';
+import 'package:front/utils/c_theme_provider.dart';
 import 'package:window_size/window_size.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -17,7 +19,12 @@ void main() async {
           Rect.fromCenter(center: Offset(1000, 500), width: 600, height: 1000));
     });
   }
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

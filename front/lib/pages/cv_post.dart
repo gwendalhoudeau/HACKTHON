@@ -95,7 +95,7 @@ class _CvPostState extends State<CvPost> {
 
   Future<void> _loadMessages() async {
     final prefs = await SharedPreferences.getInstance();
-    final savedMessages = prefs.getStringList('chat_messages');
+    final savedMessages = prefs.getStringList('${widget.post.id}');
     debugPrint(savedMessages.toString());
     if (savedMessages != null) {
       setState(() {
@@ -106,7 +106,7 @@ class _CvPostState extends State<CvPost> {
 
   Future<void> _saveMessages() async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setStringList('chat_messages', messages);
+    prefs.setStringList('${widget.post.id}', messages);
   }
 
   @override
