@@ -2,7 +2,9 @@ import 'package:front/models/users/ca_users.dart';
 
 class Consumers extends CaUsers {
   @override
-  String get label => "utilisateur";
+  String id;
+  @override
+  String get label => "particulier";
   @override
   String userName;
 
@@ -16,6 +18,7 @@ class Consumers extends CaUsers {
   final int? quantity;
 
   Consumers({
+    required this.id,
     required this.email,
     required this.password,
     required this.userName,

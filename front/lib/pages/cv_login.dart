@@ -10,43 +10,134 @@ class CvLogin extends StatefulWidget {
 }
 
 class _CvLoginState extends State<CvLogin> {
+  String form = "login";
+  bool isConsumer = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Connexion'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextFormField(
-                onChanged: (text) {
-                  setState(() {});
-                },
-                decoration: const InputDecoration(labelText: 'Adresse Email'),
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge // Utilisation du style bodyLarge
-                ),
-            const SizedBox(height: 16.0),
-            TextFormField(
-                onChanged: (text) {
-                  setState(() {});
-                },
-                decoration: InputDecoration(labelText: 'Mot de passe'),
-                obscureText: true,
-                style: Theme.of(context).textTheme.bodyLarge),
-            const SizedBox(height: 32.0),
-            CwButton("Se Connecter", onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CvHome()),
-              );
-            })
-          ],
-        ),
+      body: Column(
+        children: [
+          const SizedBox(height: 16.0),
+          CwButton(
+            "se connecter",
+            onPressed: () {
+              form = "login";
+              setState(() {});
+            },
+            colorBackground:
+                (form == "login") ? (Colors.blue) : (Colors.transparent),
+          ),
+          CwButton(
+            "s'inscrire",
+            onPressed: () {
+              form = "register";
+              setState(() {});
+            },
+            colorBackground:
+                (form == "register") ? (Colors.blue) : (Colors.transparent),
+          ),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: (form == "login")
+                  ? [
+                      TextFormField(
+                          onChanged: (text) {
+                            setState(() {});
+                          },
+                          decoration:
+                              const InputDecoration(labelText: 'Adresse Email'),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge // Utilisation du style bodyLarge
+                          ),
+                      const SizedBox(height: 16.0),
+                      TextFormField(
+                          onChanged: (text) {
+                            setState(() {});
+                          },
+                          decoration:
+                              InputDecoration(labelText: 'Mot de passe'),
+                          obscureText: true,
+                          style: Theme.of(context).textTheme.bodyLarge),
+                      const SizedBox(height: 32.0),
+                      CwButton("Se Connecter", onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CvHome()),
+                        );
+                      })
+                    ]
+                  : [
+                      TextFormField(
+                          onChanged: (text) {
+                            setState(() {});
+                          },
+                          decoration:
+                              const InputDecoration(labelText: 'Adresse Email'),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge // Utilisation du style bodyLarge
+                          ),
+                      const SizedBox(height: 16.0),
+                      TextFormField(
+                          onChanged: (text) {
+                            setState(() {});
+                          },
+                          decoration: const InputDecoration(
+                              labelText: "Nom d'Utilisateur"),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge // Utilisation du style bodyLarge
+                          ),
+                      const SizedBox(height: 16.0),
+                      TextFormField(
+                          onChanged: (text) {
+                            setState(() {});
+                          },
+                          decoration:
+                              InputDecoration(labelText: 'Mot de passe'),
+                          obscureText: true,
+                          style: Theme.of(context).textTheme.bodyLarge),
+                      const SizedBox(height: 32.0),
+                      CheckboxListTile(
+                        title: Text("Je suis un consommateur"),
+                        value:
+                            isConsumer, // Vous devez définir isConsumer comme une variable booléenne
+                        onChanged: (newValue) {
+                          setState(() {
+                            isConsumer = newValue!;
+                          });
+                        },
+                        controlAffinity: ListTileControlAffinity.leading,
+                      ),
+                      CheckboxListTile(
+                        title: Text("Je suis une entreprise"),
+                        value:
+                            !isConsumer, // Vous devez définir isBusiness comme une variable booléenne
+                        onChanged: (newValue) {
+                          setState(() {
+                            isConsumer = !newValue!;
+                          });
+                        },
+                        controlAffinity: ListTileControlAffinity.leading,
+                      ),
+                      CwButton("S'inscrire", onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => CvHome()),
+                        );
+                      })
+                    ],
+            ),
+          ),
+          const Spacer(),
+        ],
       ),
     );
   }

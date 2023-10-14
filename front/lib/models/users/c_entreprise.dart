@@ -1,23 +1,20 @@
 import 'package:front/models/users/ca_users.dart';
 
-class CEntreprise extends CaUsers {
-  @override
+class CUser {
+  String id;
   String get label => "entreprise";
-  @override
   String userName;
 
-  @override
   String email;
 
-  @override
   String password;
 
-  @override
   final int? quantity;
 
   final String locate;
 
-  CEntreprise({
+  CUser({
+    required this.id,
     required this.email,
     required this.password,
     required this.userName,
@@ -25,7 +22,8 @@ class CEntreprise extends CaUsers {
     this.quantity,
   });
 
-  CEntreprise copyWith({
+  CUser copyWith({
+    String? id,
     String? userName,
     String? email,
     String? password,
@@ -33,7 +31,8 @@ class CEntreprise extends CaUsers {
     String? locate,
     int? quantity,
   }) {
-    return CEntreprise(
+    return CUser(
+      id: id ?? this.id,
       email: email ?? this.email,
       password: password ?? this.password,
       userName: userName ?? this.userName,

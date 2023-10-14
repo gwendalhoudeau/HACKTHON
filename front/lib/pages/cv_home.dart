@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front/models/users/c_entreprise.dart';
 import 'package:front/models/widgets/cv_tile.dart';
+import 'package:front/widgets/cw_button.dart';
 
 class CvHome extends StatefulWidget {
   CvHome({super.key});
@@ -10,7 +11,8 @@ class CvHome extends StatefulWidget {
 }
 
 class _CvHomeState extends State<CvHome> {
-  CEntreprise entreprise = CEntreprise(
+  CUser entreprise = CUser(
+    id: "idtest",
     email: 'email_entreprise@example.com',
     password: 'mot_de_passe_entreprise',
     userName: 'limagrin',

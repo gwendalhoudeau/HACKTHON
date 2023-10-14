@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:front/models/users/c_entreprise.dart';
 import 'package:front/models/users/ca_users.dart';
+import 'package:front/widgets/cw_button.dart';
 
 class CvTile extends StatelessWidget {
-  final CaUsers user;
+  final CUser user;
 
   const CvTile({
     required this.user,
@@ -11,8 +12,7 @@ class CvTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String action =
-        (user is CEntreprise) ? ("quantité d'eau disponible") : ("");
+    String action = (user is CUser) ? ("quantité d'eau disponible") : ("");
 
     double screenWidth = MediaQuery.of(context).size.width;
     double containerWidth = screenWidth * 0.95;
@@ -42,12 +42,18 @@ class CvTile extends StatelessWidget {
             "$action : ${user.quantity} L",
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          (user is CEntreprise)
+          (user is CUser)
               ? Text(
                   "localisation : ${user.locate}",
                   style: Theme.of(context).textTheme.bodyLarge,
                 )
               : (const SizedBox()),
+          const Padding(padding: EdgeInsets.only(bottom: 30)),
+          CwButton(
+            "Voir l'offre",
+            style: Theme.of(context).textTheme.bodyLarge,
+            onPressed: () {},
+          ),
         ],
       ),
     );
