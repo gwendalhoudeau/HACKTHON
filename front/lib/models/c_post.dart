@@ -1,4 +1,4 @@
-import 'package:front/models/users/c_entreprise.dart';
+import 'package:front/models/users/c_user.dart';
 
 class CPost {
   final String id;

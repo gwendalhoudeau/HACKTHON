@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
+import 'package:front/models/users/c_user.dart';
+import 'package:front/models/users/ca_users.dart';
+=======
 import 'package:front/models/c_post.dart';
 import 'package:front/models/users/c_entreprise.dart';
 import 'package:front/pages/cv_post.dart';
+>>>>>>> ecc35e6b49cf3a220a9da3d2876ffe94ac419a08
 import 'package:front/widgets/cw_button.dart';
 
 class CvTile extends StatelessWidget {
