@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:front/models/users/c_entreprise.dart';
 import 'package:front/models/widgets/cv_tile.dart';
 import 'package:front/widgets/cw_button.dart';
@@ -24,6 +25,8 @@ class _CvHomeState extends State<CvHome> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(dotenv.env['API_URL']);
+
     for (int i = 0; i < 10; i++) {
       listEntreprise.add(CvTile(user: entreprise));
       listEntreprise.add(const Padding(padding: EdgeInsets.only(bottom: 15)));
