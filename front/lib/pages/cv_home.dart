@@ -16,9 +16,15 @@ class CvHome extends StatefulWidget {
   State<CvHome> createState() => _CvHomeState();
 }
 
+List<CPost> filterPostsByLocate(List<CPost> posts, String targetLocate) {
+  return posts.where((post) => post.locate == targetLocate).toList();
+}
+
 class _CvHomeState extends State<CvHome> {
   late CPost randompost;
   late CPost randompost2;
+  late CPost randompost3;
+  late CPost randompost4;
   CUser entreprise = CUser(
     id: "idtest",
     email: 'email_entreprise@example.com',
@@ -43,7 +49,19 @@ class _CvHomeState extends State<CvHome> {
     randompost2 = CPost(
       id: "id2",
       user: entreprise,
-      locate: "locasdfsfsdfsdfsdfsdfte",
+      locate: "clermont",
+      quantity: 546546546465464,
+    );
+    randompost3 = CPost(
+      id: "id2",
+      user: entreprise,
+      locate: "clermont",
+      quantity: 546546546465464,
+    );
+    randompost4 = CPost(
+      id: "id2",
+      user: entreprise,
+      locate: "lyon",
       quantity: 546546546465464,
     );
   }
@@ -69,6 +87,19 @@ class _CvHomeState extends State<CvHome> {
       afficheVoirButton: true,
       vuepost: false,
     ));
+    listEntreprise.add(CvTile(
+      user: widget.user,
+      post: randompost3,
+      afficheVoirButton: true,
+      vuepost: false,
+    ));
+    listEntreprise.add(CvTile(
+      user: widget.user,
+      post: randompost4,
+      afficheVoirButton: true,
+      vuepost: false,
+    ));
+
     final String assetname = "assets/logo_waterhub.svg";
 
     return Scaffold(

@@ -44,15 +44,12 @@ class _CvLoginState extends State<CvLogin> {
   @override
   Widget build(BuildContext context) {
     final String assetname = "assets/logo_waterhub.svg";
+    final Widget mySvg = SvgPicture.asset('assets/logo_waterhub.svg');
     debugPrint(assetname);
     return Scaffold(
       appBar: AppBar(
-        leading: SvgPicture.asset(
-          assetname, // Remplacez par le chemin de votre fichier SVG
-          width: 40, // Définissez la largeur selon vos besoins
-          height: 40, // Définissez la hauteur selon vos besoins
-          allowDrawingOutsideViewBox: true,
-        ), // Icône de profil (remplacez 'chemin_vers_votre_image' par le chemin de votre image)
+        leading: Image.asset(
+            "assets/logo.png"), // Icône de profil (remplacez 'chemin_vers_votre_image' par le chemin de votre image)
         title: const Text('WaterHub'), // Titre de l'AppBar
         actions: [
           IconButton(

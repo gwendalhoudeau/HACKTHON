@@ -29,9 +29,7 @@ flutter:
   assets:
     - .env
     - assets/logo_waterhub.svg
+    - assets/logo.png
+    - assets/1697310931old-man-7b.svg
   uses-material-design: true
-flutter_icons:
-  android: true
-  ios: false
-  windows: true
-  image_path: "assets/logo_waterhub.svg"
+
