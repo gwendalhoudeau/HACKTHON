@@ -24,7 +24,16 @@ class _CvCreatePostState extends State<CvCreatePost> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Publier une offre'),
+        title: const Text('WaterHub'), // Titre de l'AppBar
+        actions: [
+          IconButton(
+            icon: Icon(Icons
+                .person), // Remplacez 'profile' par l'icône que vous souhaitez utiliser
+            onPressed: () {
+              // Action à exécuter lorsque l'icône de profil est cliquée
+            },
+          ),
+        ],
       ),
       body: Form(
         key: _formKey,
@@ -33,7 +42,10 @@ class _CvCreatePostState extends State<CvCreatePost> {
           children: [
             const Spacer(),
             TextFormField(
-              decoration: InputDecoration(labelText: 'Emplacement'),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    fontFamily: "Arial",
+                  ),
+              decoration: InputDecoration(labelText: 'Localisation'),
               validator: (value) {
                 if (value!.isEmpty) {
                   return 'Veuillez entrer un emplacement';
@@ -43,12 +55,11 @@ class _CvCreatePostState extends State<CvCreatePost> {
               onSaved: (value) {
                 _locate = value!;
               },
-              style: TextStyle(
-                fontFamily: 'Arial', // Utilise la police Arial
-                // Autres propriétés de style comme fontSize, fontWeight, etc.
-              ),
             ),
             TextFormField(
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                    fontFamily: "Arial",
+                  ),
               decoration: InputDecoration(labelText: 'Quantité'),
               validator: (value) {
                 if (value!.isEmpty) {
@@ -59,10 +70,6 @@ class _CvCreatePostState extends State<CvCreatePost> {
               onSaved: (value) {
                 _quantity = int.parse(value!);
               },
-              style: TextStyle(
-                fontFamily: 'Arial', // Utilise la police Arial
-                // Autres propriétés de style comme fontSize, fontWeight, etc.
-              ),
             ),
             ElevatedButton(
               onPressed: () {

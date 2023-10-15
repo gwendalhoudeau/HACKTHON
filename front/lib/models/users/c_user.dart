@@ -1,6 +1,5 @@
 class CUser {
   String id;
-  String get label => "entreprise";
   String userName;
 
   String email;

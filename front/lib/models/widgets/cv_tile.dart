@@ -41,12 +41,7 @@ class CvTile extends StatelessWidget {
         crossAxisAlignment:
             CrossAxisAlignment.start, // Aligner le contenu à gauche
         children: [
-          Text(
-            "type : ${post.user.label}",
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  fontFamily: "Arial",
-                ),
-          ),
+          const Padding(padding: EdgeInsets.only(bottom: 30)),
           Text(
             "${post.user.userName}",
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
@@ -87,13 +82,13 @@ class CvTile extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => CvPost(
                                     post: post,
-                                    user: user,
+                                    user: post.user,
                                   )),
                         );
                       },
                     )
                   : (SizedBox())))
-              : ((post.user == user)
+              : ((post.user != user)
                   ? (SizedBox())
                   : (CwButton(
                       "Demande de Réservation",
