@@ -67,11 +67,11 @@ class _CvHomeState extends State<CvHome> {
   late CPost randompost4;
   late List<Widget> listwidget;
   late List<CPost> listpost;
-  CUser entreprise = CUser(
+  CUser user2 = CUser(
     id: "idtest",
     email: 'email_entreprise@example.com',
     password: 'mot_de_passe_entreprise',
-    userName: 'limagrin',
+    userName: 'Sapro Starie',
     locate: "clermont",
     quantity: 50,
   );
@@ -90,31 +90,31 @@ class _CvHomeState extends State<CvHome> {
 
     // Initialiser randompost avec widget.user dans initState
     randompost = CPost(
-      id: "id1",
+      id: "id5",
       user: widget.user,
       locate: "Paris",
-      distance: 456,
+      distance: 450,
       quantity: 10,
     );
     randompost2 = CPost(
-      id: "id2",
-      user: entreprise,
+      id: "id6",
+      user: user2,
       locate: "Clermont-Ferrand",
-      distance: 456,
+      distance: 10,
       quantity: 30,
     );
     randompost3 = CPost(
-      id: "id2",
-      user: entreprise,
+      id: "id7",
+      user: widget.user,
       locate: "Clermont-Ferrand",
-      distance: 456,
+      distance: 5,
       quantity: 40,
     );
     randompost4 = CPost(
-      id: "id2",
-      user: entreprise,
+      id: "id8",
+      user: user2,
       locate: "Lyon",
-      distance: 0,
+      distance: 300,
       quantity: 20,
     );
     listpost = [randompost, randompost2, randompost3, randompost4];
@@ -134,7 +134,18 @@ class _CvHomeState extends State<CvHome> {
     debugPrint(dotenv.env['API_URL']);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('WaterHub'), // Titre de l'AppBar
+        actions: [
+          IconButton(
+            icon: Icon(Icons
+                .person), // Remplacez 'profile' par l'icône que vous souhaitez utiliser
+            onPressed: () {
+              // Action à exécuter lorsque l'icône de profil est cliquée
+            },
+          ),
+        ],
+      ),
       body: Column(
         children: [
           Center(

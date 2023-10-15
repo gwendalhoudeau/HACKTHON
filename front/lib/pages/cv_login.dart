@@ -29,7 +29,7 @@ class _CvLoginState extends State<CvLogin> {
     id: "id",
     email: "email",
     password: "password",
-    userName: "utilisateur",
+    userName: "gwendal",
     locate: "locate",
   );
   String form = "login";
@@ -137,6 +137,7 @@ class _CvLoginState extends State<CvLogin> {
                                     fontFamily: "Arial",
                                   )),
                       const SizedBox(height: 32.0),
+<<<<<<< HEAD
                       Container(
                           width: 200.0,
                           height: 50.0,
@@ -202,6 +203,63 @@ class _CvLoginState extends State<CvLogin> {
                                 body: jsonEncode(
                                     requestData), // Convertit les données en JSON
                                 headers: headers);
+=======
+                      CwButton("Se Connecter",
+                          style: Theme.of(context).textTheme.bodySmall,
+                          onPressed: () async {
+                        CPost randompost = CPost(
+                          id: "id5",
+                          user: user,
+                          locate: "Paris",
+                          distance: 450,
+                          quantity: 10,
+                        );
+                        CPost randompost2 = CPost(
+                          id: "id6",
+                          user: user,
+                          locate: "Clermont-Ferrand",
+                          distance: 10,
+                          quantity: 30,
+                        );
+                        CPost randompost3 = CPost(
+                          id: "id7",
+                          user: user,
+                          locate: "Clermont-Ferrand",
+                          distance: 5,
+                          quantity: 40,
+                        );
+                        CPost randompost4 = CPost(
+                          id: "id8",
+                          user: user,
+                          locate: "Lyon",
+                          distance: 300,
+                          quantity: 20,
+                        );
+                        List<CPost> listPost = [
+                          randompost,
+                          randompost2,
+                          randompost3,
+                          randompost4
+                        ];
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CvHome(
+                                    user: user,
+                                    postlist: listPost,
+                                  )),
+                        );
+                        Map<String, dynamic> requestData = {
+                          'email': email,
+                          'password': password,
+                        };
+                        final response = await post(
+                            Uri.parse(
+                                "${dotenv.env['API_URL']}/api/user/login"),
+                            body: jsonEncode(
+                                requestData), // Convertit les données en JSON
+                            headers: headers);
+>>>>>>> 3c6076d320f8bfd25332a7d807f49c39222c117c
 
                             Map<String, dynamic> jsonResponse =
                                 json.decode(response.body);

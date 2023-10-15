@@ -37,7 +37,16 @@ class _CvPostState extends State<CvPost> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Détails de l\'offre'),
+        title: const Text('WaterHub'), // Titre de l'AppBar
+        actions: [
+          IconButton(
+            icon: Icon(Icons
+                .person), // Remplacez 'profile' par l'icône que vous souhaitez utiliser
+            onPressed: () {
+              // Action à exécuter lorsque l'icône de profil est cliquée
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -46,7 +55,7 @@ class _CvPostState extends State<CvPost> {
             child: ListView(
               children: [
                 CvTile(
-                  user: widget.user,
+                  user: widget.post.user,
                   post: widget.post,
                   afficheVoirButton: false,
                   vuepost: true,
@@ -122,10 +131,9 @@ class _CvPostState extends State<CvPost> {
         TextField(
           controller: messageController,
           decoration: InputDecoration(labelText: 'Nouveau message'),
-          style: TextStyle(
-            fontFamily: 'Arial', // Utilise la police Arial
-            // Autres propriétés de style comme fontSize, fontWeight, etc.
-          ),
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                fontFamily: "Arial",
+              ),
         ),
         ElevatedButton(
           style: ButtonStyle(
