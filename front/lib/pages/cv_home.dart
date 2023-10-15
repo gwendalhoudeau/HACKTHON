@@ -149,12 +149,15 @@ class _CvHomeState extends State<CvHome> {
       body: Column(
         children: [
           Center(
-            child: Text(
-              "Offres Disponibles",
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall!
-                  .copyWith(fontFamily: 'Arial'),
+            child: Container(
+              margin: EdgeInsets.only(top: 25.0),
+              child: Text(
+                "Offres Disponibles",
+                style: Theme.of(context)
+                    .textTheme
+                    .displaySmall!
+                    .copyWith(fontFamily: 'Arial'),
+              ),
             ),
           ),
           const Padding(padding: EdgeInsets.only(bottom: 30)),
