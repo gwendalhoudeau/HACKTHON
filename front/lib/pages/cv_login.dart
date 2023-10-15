@@ -65,27 +65,43 @@ class _CvLoginState extends State<CvLogin> {
       body: Column(
         children: [
           const SizedBox(height: 16.0),
-          CwButton(
-            "se connecter",
-            style: Theme.of(context).textTheme.bodySmall,
-            onPressed: () {
-              form = "login";
-              setState(() {});
-            },
-            colorBackground: (form == "login")
-                ? (Theme.of(context).primaryColor)
-                : (Colors.transparent),
+          Container(
+            width: 200.0,
+            height: 50.0,
+            margin: EdgeInsets.only(bottom: 25.0, top: 25.0),
+            child: CwButton(
+              "Se connecter",
+              style: Theme.of(context).textTheme.bodySmall,
+              onPressed: () {
+                form = "login";
+                setState(() {});
+              },
+              colorBackground: (form == "login")
+                  ? (Theme.of(context).primaryColor)
+                  : (Colors.transparent),
+            ),
           ),
-          CwButton(
-            "s'inscrire",
-            style: Theme.of(context).textTheme.bodySmall,
-            onPressed: () {
-              form = "register";
-              setState(() {});
-            },
-            colorBackground: (form == "register")
-                ? (Theme.of(context).primaryColor)
-                : (Colors.transparent),
+          Container(
+            width: 200.0,
+            height: 50.0,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.black, // Couleur de la bordure
+                width: 2.0, // Épaisseur de la bordure
+              ),
+              borderRadius: BorderRadius.circular(50.0),
+            ),
+            child: CwButton(
+              "S'inscrire",
+              style: Theme.of(context).textTheme.bodySmall,
+              onPressed: () {
+                form = "register";
+                setState(() {});
+              },
+              colorBackground: (form == "register")
+                  ? (Theme.of(context).primaryColor)
+                  : (Colors.transparent),
+            ),
           ),
           const Spacer(),
           Padding(
@@ -121,72 +137,82 @@ class _CvLoginState extends State<CvLogin> {
                                     fontFamily: "Arial",
                                   )),
                       const SizedBox(height: 32.0),
-                      CwButton("Se Connecter",
-                          style: Theme.of(context).textTheme.bodySmall,
-                          onPressed: () async {
-                        CPost randompost = CPost(
-                          id: "id1",
-                          user: user,
-                          locate: "Paris",
-                          distance: 456,
-                          quantity: 10,
-                        );
-                        CPost randompost2 = CPost(
-                          id: "id2",
-                          user: user,
-                          locate: "Clermont-Ferrand",
-                          distance: 456,
-                          quantity: 30,
-                        );
-                        CPost randompost3 = CPost(
-                          id: "id2",
-                          user: user,
-                          locate: "Clermont-Ferrand",
-                          distance: 456,
-                          quantity: 40,
-                        );
-                        CPost randompost4 = CPost(
-                          id: "id2",
-                          user: user,
-                          locate: "Lyon",
-                          distance: 0,
-                          quantity: 20,
-                        );
-                        List<CPost> listPost = [
-                          randompost,
-                          randompost2,
-                          randompost3,
-                          randompost4
-                        ];
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CvHome(
-                                    user: user,
-                                    postlist: listPost,
-                                  )),
-                        );
-                        Map<String, dynamic> requestData = {
-                          'email': email,
-                          'password': password,
-                        };
-                        final response = await post(
-                            Uri.parse(
-                                "${dotenv.env['API_URL']}/api/user/login"),
-                            body: jsonEncode(
-                                requestData), // Convertit les données en JSON
-                            headers: headers);
+                      Container(
+                          width: 200.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black, // Couleur de la bordure
+                              width: 2.0, // Épaisseur de la bordure
+                            ),
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                          child: CwButton("Connexion",
+                              style: Theme.of(context).textTheme.bodySmall,
+                              onPressed: () async {
+                            CPost randompost = CPost(
+                              id: "id1",
+                              user: user,
+                              locate: "Paris",
+                              distance: 456,
+                              quantity: 10,
+                            );
+                            CPost randompost2 = CPost(
+                              id: "id2",
+                              user: user,
+                              locate: "Clermont-Ferrand",
+                              distance: 456,
+                              quantity: 30,
+                            );
+                            CPost randompost3 = CPost(
+                              id: "id2",
+                              user: user,
+                              locate: "Clermont-Ferrand",
+                              distance: 456,
+                              quantity: 40,
+                            );
+                            CPost randompost4 = CPost(
+                              id: "id2",
+                              user: user,
+                              locate: "Lyon",
+                              distance: 0,
+                              quantity: 20,
+                            );
+                            List<CPost> listPost = [
+                              randompost,
+                              randompost2,
+                              randompost3,
+                              randompost4
+                            ];
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CvHome(
+                                        user: user,
+                                        postlist: listPost,
+                                      )),
+                            );
+                            Map<String, dynamic> requestData = {
+                              'email': email,
+                              'password': password,
+                            };
+                            final response = await post(
+                                Uri.parse(
+                                    "${dotenv.env['API_URL']}/api/user/login"),
+                                body: jsonEncode(
+                                    requestData), // Convertit les données en JSON
+                                headers: headers);
 
-                        Map<String, dynamic> jsonResponse =
-                            json.decode(response.body);
+                            Map<String, dynamic> jsonResponse =
+                                json.decode(response.body);
 
-                        if (response.statusCode == 200) {
-                          CUser user = CUser(
-                              id: jsonResponse['id'],
-                              email: jsonResponse['email'],
-                              userName: jsonResponse['pseudo']);
-                        }
-                      })
+                            if (response.statusCode == 200) {
+                              CUser user = CUser(
+                                  id: jsonResponse['id'],
+                                  email: jsonResponse['email'],
+                                  userName: jsonResponse['pseudo']);
+                            }
+                          })),
                     ]
                   : [
                       TextFormField(
