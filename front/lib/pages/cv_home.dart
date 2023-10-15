@@ -151,17 +151,24 @@ class _CvHomeState extends State<CvHome> {
             mainAxisAlignment:
                 MainAxisAlignment.center, // Centre les éléments horizontalement
             children: [
-              CwButton("quantite", onPressed: () {
-                listwidget =
-                    postsToWidgets(sortPostsByQuantityDescending(listpost));
-                setState(() {});
-              }),
-              CwButton("Clermont-Ferrand", onPressed: () {
+              CwButton(
+                "quantite",
+                style: Theme.of(context).textTheme.bodySmall,
+                onPressed: () {
+                  listwidget =
+                      postsToWidgets(sortPostsByQuantityDescending(listpost));
+                  setState(() {});
+                },
+              ),
+              CwButton("Clermont-Ferrand",
+                  style: Theme.of(context).textTheme.bodySmall, onPressed: () {
                 listwidget = postsToWidgets(
                     filterPostsByLocate(listpost, "Clermont-Ferrand"));
                 setState(() {});
               }),
-              CwButton("distance", onPressed: () {}),
+              CwButton("distance",
+                  style: Theme.of(context).textTheme.bodySmall,
+                  onPressed: () {}),
             ],
           ),
           const Padding(padding: EdgeInsets.only(bottom: 30)),
