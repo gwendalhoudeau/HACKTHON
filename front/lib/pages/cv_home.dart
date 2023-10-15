@@ -16,8 +16,19 @@ class CvHome extends StatefulWidget {
   State<CvHome> createState() => _CvHomeState();
 }
 
-List<CPost> filterPostsByLocate(List<CPost> posts, String targetLocate) {
-  return posts.where((post) => post.locate == targetLocate).toList();
+List<Widget> postsToWidgets(List<CPost> postList) {
+  return postList.map((post) {
+    return CvTile(
+      user: post.user,
+      post: post,
+      afficheVoirButton: true,
+      vuepost: false,
+    );
+  }).toList();
+}
+
+void sortPostsByQuantityDescending(List<CPost> posts) {
+  posts.sort((a, b) => b.quantity.compareTo(a.quantity));
 }
 
 class _CvHomeState extends State<CvHome> {
@@ -25,6 +36,8 @@ class _CvHomeState extends State<CvHome> {
   late CPost randompost2;
   late CPost randompost3;
   late CPost randompost4;
+  late List<Widget> listwidget;
+  late List<CPost> listpost;
   CUser entreprise = CUser(
     id: "idtest",
     email: 'email_entreprise@example.com',
@@ -44,73 +57,36 @@ class _CvHomeState extends State<CvHome> {
       id: "id1",
       user: widget.user,
       locate: "locate",
-      quantity: 100,
+      quantity: 10,
     );
     randompost2 = CPost(
       id: "id2",
       user: entreprise,
       locate: "clermont",
-      quantity: 546546546465464,
+      quantity: 30,
     );
     randompost3 = CPost(
       id: "id2",
       user: entreprise,
       locate: "clermont",
-      quantity: 546546546465464,
+      quantity: 40,
     );
     randompost4 = CPost(
       id: "id2",
       user: entreprise,
       locate: "lyon",
-      quantity: 546546546465464,
+      quantity: 20,
     );
+    listpost = [randompost, randompost2, randompost3, randompost4];
+    listwidget = postsToWidgets(listpost);
   }
-
-  List<Widget> listEntreprise = [];
 
   @override
   Widget build(BuildContext context) {
     debugPrint(dotenv.env['API_URL']);
 
-    for (int i = 0; i < 2; i++) {
-      listEntreprise.add(CvTile(
-        user: entreprise,
-        post: randompost,
-        afficheVoirButton: true,
-        vuepost: false,
-      ));
-      listEntreprise.add(const Padding(padding: EdgeInsets.only(bottom: 15)));
-    }
-    listEntreprise.add(CvTile(
-      user: widget.user,
-      post: randompost2,
-      afficheVoirButton: true,
-      vuepost: false,
-    ));
-    listEntreprise.add(CvTile(
-      user: widget.user,
-      post: randompost3,
-      afficheVoirButton: true,
-      vuepost: false,
-    ));
-    listEntreprise.add(CvTile(
-      user: widget.user,
-      post: randompost4,
-      afficheVoirButton: true,
-      vuepost: false,
-    ));
-
-    final String assetname = "assets/logo_waterhub.svg";
-
     return Scaffold(
-      appBar: AppBar(
-        leading: SvgPicture.asset(
-          assetname, // Remplacez par le chemin de votre fichier SVG
-          width: 40, // Définissez la largeur selon vos besoins
-          height: 40, // Définissez la hauteur selon vos besoins
-          allowDrawingOutsideViewBox: true,
-        ),
-      ),
+      appBar: AppBar(),
       body: Column(
         children: [
           Center(
@@ -120,9 +96,23 @@ class _CvHomeState extends State<CvHome> {
             ),
           ),
           const Padding(padding: EdgeInsets.only(bottom: 30)),
+          Row(
+            mainAxisAlignment:
+                MainAxisAlignment.center, // Centre les éléments horizontalement
+            children: [
+              CwButton("quantite", onPressed: () {
+                sortPostsByQuantityDescending(listpost);
+                listwidget = postsToWidgets(listpost);
+                setState(() {});
+              }),
+              CwButton("Clermont-Ferrand", onPressed: () {}),
+              CwButton("distance", onPressed: () {}),
+            ],
+          ),
+          const Padding(padding: EdgeInsets.only(bottom: 30)),
           Expanded(
             child: ListView(
-              children: listEntreprise,
+              children: listwidget,
             ),
           ),
           const Padding(padding: EdgeInsets.only(bottom: 30)),
