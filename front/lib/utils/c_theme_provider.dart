@@ -15,16 +15,22 @@ class ThemeProvider extends ChangeNotifier {
       bodyLarge: TextStyle(
         fontSize: 16.0,
         color: Colors.blue,
+        fontFamily: "Arial",
       ), // Style de texte par défaut
       bodySmall: TextStyle(
         fontSize: 15,
         color: Colors.black,
+        fontFamily: "Arial",
       ),
-      displaySmall: TextStyle(color: Colors.black),
+      displaySmall: TextStyle(
+        color: Colors.black,
+        fontFamily: "Arial",
+      ),
       titleLarge: TextStyle(
         fontSize: 24.0,
         fontWeight: FontWeight.bold,
         color: Colors.black,
+        fontFamily: "Arial",
       ), // Style de titre
     ),
   );
@@ -44,16 +50,22 @@ class ThemeProvider extends ChangeNotifier {
                 bodyLarge: TextStyle(
                   fontSize: 16.0,
                   color: Colors.blue,
+                  fontFamily: "Arial",
                 ), // Style de texte par défaut
                 bodySmall: TextStyle(
                   fontSize: 15,
                   color: Colors.black,
+                  fontFamily: "Arial",
                 ),
-                displaySmall: TextStyle(color: Colors.black),
+                displaySmall: TextStyle(
+                  color: Colors.black,
+                  fontFamily: "Arial",
+                ),
                 titleLarge: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
+                  fontFamily: "Arial",
                 ), // Style de titre
               ),
             )
@@ -67,15 +79,18 @@ class ThemeProvider extends ChangeNotifier {
               bodyLarge: TextStyle(
                 fontSize: 16.0,
                 color: Colors.blue,
+                fontFamily: "Arial",
               ), // Style de texte par défaut
               bodySmall: TextStyle(
                 fontSize: 15,
                 color: Colors.white,
+                fontFamily: "Arial",
               ),
               titleLarge: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
+                fontFamily: "Arial",
               ), // Style de titre
             ),
           )
@@ -90,16 +105,22 @@ class ThemeProvider extends ChangeNotifier {
               bodyLarge: TextStyle(
                 fontSize: 16.0,
                 color: Colors.blue,
+                fontFamily: "Arial",
               ), // Style de texte par défaut
               bodySmall: TextStyle(
                 fontSize: 15,
                 color: Colors.black,
+                fontFamily: "Arial",
               ),
-              displaySmall: TextStyle(color: Colors.black),
+              displaySmall: TextStyle(
+                color: Colors.black,
+                fontFamily: "Arial",
+              ),
               titleLarge: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
+                fontFamily: "Arial",
               ), // Style de titre
             ),
           );
@@ -118,6 +139,7 @@ class ThemeProvider extends ChangeNotifier {
               bodyLarge: TextStyle(
                 fontSize: 16.0,
                 color: Color(0xFF5C87A9),
+                fontFamily: "Arial",
               ), // Style de texte par défaut// Style de titre
             ),
           )
@@ -130,6 +152,7 @@ class ThemeProvider extends ChangeNotifier {
               bodyLarge: TextStyle(
                 fontSize: 16.0,
                 color: Colors.blue,
+                fontFamily: "Arial",
               ), // Style de texte par défaut// Style de titre
             ),
           );

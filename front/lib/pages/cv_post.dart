@@ -109,6 +109,10 @@ class _CvPostState extends State<CvPost> {
         TextField(
           controller: messageController,
           decoration: InputDecoration(labelText: 'Nouveau message'),
+          style: TextStyle(
+            fontFamily: 'Arial', // Utilise la police Arial
+            // Autres propriétés de style comme fontSize, fontWeight, etc.
+          ),
         ),
         ElevatedButton(
           style: ButtonStyle(
@@ -126,7 +130,13 @@ class _CvPostState extends State<CvPost> {
               });
             }
           },
-          child: Text('Envoyer'),
+          child: Text(
+            'Envoyer',
+            style: TextStyle(
+              fontFamily: 'Arial', // Utilise la police Arial
+              // Autres propriétés de style comme fontSize, fontWeight, etc.
+            ),
+          ),
         ),
         Expanded(
           child: ListView.builder(

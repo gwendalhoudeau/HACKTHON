@@ -42,6 +42,10 @@ class _CvCreatePostState extends State<CvCreatePost> {
               onSaved: (value) {
                 _locate = value!;
               },
+              style: TextStyle(
+                fontFamily: 'Arial', // Utilise la police Arial
+                // Autres propriétés de style comme fontSize, fontWeight, etc.
+              ),
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'Quantité'),
@@ -54,6 +58,10 @@ class _CvCreatePostState extends State<CvCreatePost> {
               onSaved: (value) {
                 _quantity = int.parse(value!);
               },
+              style: TextStyle(
+                fontFamily: 'Arial', // Utilise la police Arial
+                // Autres propriétés de style comme fontSize, fontWeight, etc.
+              ),
             ),
             ElevatedButton(
               onPressed: () {
@@ -76,7 +84,13 @@ class _CvCreatePostState extends State<CvCreatePost> {
                   Navigator.pop(context);
                 }
               },
-              child: Text('Créer le Post'),
+              child: Text(
+                'Créer le Post',
+                style: TextStyle(
+                  fontFamily: 'Arial', // Utilise la police Arial
+                  // Autres propriétés de style comme fontSize, fontWeight, etc.
+                ),
+              ),
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all<Color>(
                     Theme.of(context)

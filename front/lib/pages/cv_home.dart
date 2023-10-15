@@ -27,8 +27,17 @@ List<Widget> postsToWidgets(List<CPost> postList) {
   }).toList();
 }
 
-void sortPostsByQuantityDescending(List<CPost> posts) {
-  posts.sort((a, b) => b.quantity.compareTo(a.quantity));
+List<CPost> sortPostsByQuantityDescending(List<CPost> posts) {
+  List<CPost> sortedPosts =
+      List.from(posts); // Crée une copie de la liste d'origine
+  sortedPosts.sort((a, b) => b.quantity.compareTo(a.quantity)); // Trie la copie
+  return sortedPosts; // Renvoie la liste triée
+}
+
+List<CPost> filterPostsByLocate(List<CPost> posts, String targetLocate) {
+  List<CPost> filteredPosts =
+      posts.where((post) => post.locate.contains(targetLocate)).toList();
+  return filteredPosts;
 }
 
 class _CvHomeState extends State<CvHome> {
@@ -62,13 +71,13 @@ class _CvHomeState extends State<CvHome> {
     randompost2 = CPost(
       id: "id2",
       user: entreprise,
-      locate: "clermont",
+      locate: "Clermont-Ferrand",
       quantity: 30,
     );
     randompost3 = CPost(
       id: "id2",
       user: entreprise,
-      locate: "clermont",
+      locate: "Clermont-Ferrand",
       quantity: 40,
     );
     randompost4 = CPost(
@@ -92,7 +101,10 @@ class _CvHomeState extends State<CvHome> {
           Center(
             child: Text(
               "Offres Disponibles",
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context)
+                  .textTheme
+                  .displaySmall!
+                  .copyWith(fontFamily: 'Arial'),
             ),
           ),
           const Padding(padding: EdgeInsets.only(bottom: 30)),
@@ -101,11 +113,15 @@ class _CvHomeState extends State<CvHome> {
                 MainAxisAlignment.center, // Centre les éléments horizontalement
             children: [
               CwButton("quantite", onPressed: () {
-                sortPostsByQuantityDescending(listpost);
-                listwidget = postsToWidgets(listpost);
+                listwidget =
+                    postsToWidgets(sortPostsByQuantityDescending(listpost));
                 setState(() {});
               }),
-              CwButton("Clermont-Ferrand", onPressed: () {}),
+              CwButton("Clermont-Ferrand", onPressed: () {
+                listwidget = postsToWidgets(
+                    filterPostsByLocate(listpost, "Clermont-Ferrand"));
+                setState(() {});
+              }),
               CwButton("distance", onPressed: () {}),
             ],
           ),

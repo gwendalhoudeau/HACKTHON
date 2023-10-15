@@ -43,20 +43,28 @@ class CvTile extends StatelessWidget {
         children: [
           Text(
             "type : ${post.user.label}",
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontFamily: "Arial",
+                ),
           ),
           Text(
             "${post.user.userName}",
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontFamily: "Arial",
+                ),
           ),
           Text(
             "$action : ${post.quantity} L",
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontFamily: "Arial",
+                ),
           ),
           (post is CPost)
               ? Text(
                   "localisation : ${post.locate}",
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        fontFamily: "Arial",
+                      ),
                 )
               : (const SizedBox()),
           const Padding(padding: EdgeInsets.only(bottom: 30)),
@@ -64,7 +72,9 @@ class CvTile extends StatelessWidget {
               ? ((afficheVoirButton
                   ? CwButton(
                       "Voir l'offre",
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            fontFamily: "Arial",
+                          ),
                       onPressed: () {
                         Navigator.push(
                           context,

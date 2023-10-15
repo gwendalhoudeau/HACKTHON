@@ -98,11 +98,13 @@ class _CvLoginState extends State<CvLogin> {
                             email = text;
                             setState(() {});
                           },
-                          decoration:
-                              const InputDecoration(labelText: 'Adresse Email'),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge // Utilisation du style bodyLarge
+                          decoration: const InputDecoration(
+                            labelText: 'Adresse Email',
+                          ),
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    fontFamily: "Arial",
+                                  ) // Utilisation du style bodyLarge
                           ),
                       const SizedBox(height: 16.0),
                       TextFormField(
@@ -113,7 +115,10 @@ class _CvLoginState extends State<CvLogin> {
                           decoration:
                               InputDecoration(labelText: 'Mot de passe'),
                           obscureText: true,
-                          style: Theme.of(context).textTheme.bodyLarge),
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    fontFamily: "Arial",
+                                  )),
                       const SizedBox(height: 32.0),
                       CwButton("Se Connecter",
                           style: Theme.of(context).textTheme.bodySmall,
@@ -155,9 +160,10 @@ class _CvLoginState extends State<CvLogin> {
                           },
                           decoration:
                               const InputDecoration(labelText: 'Adresse Email'),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge // Utilisation du style bodyLarge
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    fontFamily: "Arial",
+                                  ) // Utilisation du style bodyLarge
                           ),
                       const SizedBox(height: 16.0),
                       TextFormField(
@@ -167,9 +173,10 @@ class _CvLoginState extends State<CvLogin> {
                           },
                           decoration: const InputDecoration(
                               labelText: "Nom d'Utilisateur"),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge // Utilisation du style bodyLarge
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    fontFamily: "Arial",
+                                  ) // Utilisation du style bodyLarge
                           ),
                       const SizedBox(height: 16.0),
                       TextFormField(
@@ -180,7 +187,10 @@ class _CvLoginState extends State<CvLogin> {
                           decoration:
                               InputDecoration(labelText: 'Mot de passe'),
                           obscureText: true,
-                          style: Theme.of(context).textTheme.bodyLarge),
+                          style:
+                              Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                    fontFamily: "Arial",
+                                  )),
                       const SizedBox(height: 32.0),
                       CheckboxListTile(
                         title: Text(
