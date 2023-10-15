@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:front/models/c_post.dart';
 import 'package:front/models/users/c_user.dart';
 import 'package:front/pages/cv_home.dart';
 import 'package:front/pages/cv_post.dart';
@@ -123,11 +124,46 @@ class _CvLoginState extends State<CvLogin> {
                       CwButton("Se Connecter",
                           style: Theme.of(context).textTheme.bodySmall,
                           onPressed: () async {
+                        CPost randompost = CPost(
+                          id: "id1",
+                          user: user,
+                          locate: "Paris",
+                          distance: 456,
+                          quantity: 10,
+                        );
+                        CPost randompost2 = CPost(
+                          id: "id2",
+                          user: user,
+                          locate: "Clermont-Ferrand",
+                          distance: 456,
+                          quantity: 30,
+                        );
+                        CPost randompost3 = CPost(
+                          id: "id2",
+                          user: user,
+                          locate: "Clermont-Ferrand",
+                          distance: 456,
+                          quantity: 40,
+                        );
+                        CPost randompost4 = CPost(
+                          id: "id2",
+                          user: user,
+                          locate: "Lyon",
+                          distance: 0,
+                          quantity: 20,
+                        );
+                        List<CPost> listPost = [
+                          randompost,
+                          randompost2,
+                          randompost3,
+                          randompost4
+                        ];
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => CvHome(
                                     user: user,
+                                    postlist: listPost,
                                   )),
                         );
                         Map<String, dynamic> requestData = {

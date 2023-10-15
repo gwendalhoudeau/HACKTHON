@@ -5,13 +5,16 @@ import 'package:front/models/c_post.dart';
 import 'package:front/models/users/c_user.dart';
 import 'package:front/models/widgets/cv_tile.dart';
 import 'package:front/pages/cv_createPost.dart';
+import 'package:front/utils/c_distance.dart';
 import 'package:front/utils/c_theme_provider.dart';
 import 'package:front/widgets/cw_button.dart';
 import 'package:provider/provider.dart';
 
 class CvHome extends StatefulWidget {
   final CUser user;
-  CvHome({required this.user, Key? key}) : super(key: key);
+  List<CPost> postlist;
+  CvHome({required this.user, required this.postlist, Key? key})
+      : super(key: key);
   @override
   State<CvHome> createState() => _CvHomeState();
 }
@@ -40,6 +43,23 @@ List<CPost> filterPostsByLocate(List<CPost> posts, String targetLocate) {
   return filteredPosts;
 }
 
+Future<double> getDistance(String locate) async {
+  debugPrint("lkjlkxmlkdsfmlksdmlkfmlkfdskf");
+
+  String address1 = "Clermont-Ferrand";
+  String address2 = locate;
+  List<double>? coordAdress1 = await CDistance.getCoordinates(address1);
+  List<double>? coordAdress2 = await CDistance.getCoordinates(address2);
+  late double distance;
+
+  double lat1 = coordAdress1![0];
+  double lng1 = coordAdress1![1];
+  double lat2 = coordAdress2![0];
+  double lng2 = coordAdress2![1];
+  distance = CDistance.calculateDistance(lat1, lng1, lat2, lng2);
+  return distance;
+}
+
 class _CvHomeState extends State<CvHome> {
   late CPost randompost;
   late CPost randompost2;
@@ -56,6 +76,13 @@ class _CvHomeState extends State<CvHome> {
     quantity: 50,
   );
 
+  Future<void> fonctionintermediaire() async {
+    for (int i = 0; i < widget.postlist.length; i++) {
+      final distance = await getDistance(widget.postlist[i].locate);
+      widget.postlist[i] = widget.postlist[i].copyWith(distance: distance);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -65,28 +92,40 @@ class _CvHomeState extends State<CvHome> {
     randompost = CPost(
       id: "id1",
       user: widget.user,
-      locate: "locate",
+      locate: "Paris",
+      distance: 456,
       quantity: 10,
     );
     randompost2 = CPost(
       id: "id2",
       user: entreprise,
       locate: "Clermont-Ferrand",
+      distance: 456,
       quantity: 30,
     );
     randompost3 = CPost(
       id: "id2",
       user: entreprise,
       locate: "Clermont-Ferrand",
+      distance: 456,
       quantity: 40,
     );
     randompost4 = CPost(
       id: "id2",
       user: entreprise,
-      locate: "lyon",
+      locate: "Lyon",
+      distance: 0,
       quantity: 20,
     );
     listpost = [randompost, randompost2, randompost3, randompost4];
+
+    debugPrint(widget.postlist[0].distance.toString());
+    fonctionintermediaire().then((value) => setState(() {}));
+    Future.delayed(Duration(seconds: 2));
+    debugPrint(widget.postlist[0].distance.toString());
+
+    debugPrint(listpost.toString());
+    setState(() {});
     listwidget = postsToWidgets(listpost);
   }
 

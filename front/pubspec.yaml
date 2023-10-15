@@ -9,12 +9,14 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   desktop_window: any
+  google_maps_flutter: ^2.1.0
   flutter_dotenv: ^5.0.2
   http: any
   shared_preferences: ^2.0.6
   provider: any
   color_blindness : any
   random_color_scheme: any
+  google_maps_flutter_web: ^0.3.2+2
   url_launcher: any
   flutter_svg: ^0.22.0 # Assurez-vous d'utiliser la version appropriée
   window_size:

@@ -5,6 +5,7 @@ import 'package:front/models/widgets/cv_tile.dart';
 import 'package:front/utils/c_theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CvPost extends StatefulWidget {
   final CPost post;
@@ -31,6 +32,7 @@ class _CvPostState extends State<CvPost> {
     _loadMessages();
   }
 
+  GoogleMapController? _controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +55,17 @@ class _CvPostState extends State<CvPost> {
             ),
           ),
           Divider(),
+          GoogleMap(
+            onMapCreated: (controller) {
+              setState(() {
+                _controller = controller;
+              });
+            },
+            initialCameraPosition: CameraPosition(
+              target: LatLng(0.0, 0.0), // Coordonnées par défaut
+              zoom: 10, // Niveau de zoom
+            ),
+          ),
           Expanded(
             child: _buildChatBox(),
           ),
@@ -176,5 +189,27 @@ class _CvPostState extends State<CvPost> {
     super.dispose();
     // Sauvegardez les messages lorsque la page est fermée ou que l'utilisateur quitte la page.
     _saveMessages();
+  }
+}
+
+class CustomMap extends StatelessWidget {
+  final GoogleMapController? controller;
+  final CameraPosition initialCameraPosition;
+
+  CustomMap({
+    this.controller,
+    required this.initialCameraPosition,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GoogleMap(
+      onMapCreated: (controller) {
+        if (this.controller != null) {
+          //this.controller(controller);
+        }
+      },
+      initialCameraPosition: initialCameraPosition,
+    );
   }
 }

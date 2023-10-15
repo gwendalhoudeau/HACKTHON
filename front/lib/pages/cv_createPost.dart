@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front/models/c_post.dart';
 import 'package:front/models/users/c_user.dart';
+import 'package:front/pages/cv_home.dart';
 import 'package:front/utils/c_theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -74,6 +75,7 @@ class _CvCreatePostState extends State<CvCreatePost> {
                     user: widget.user,
                     locate: _locate,
                     quantity: _quantity,
+                    distance: 0,
                     price: _price,
                   );
 

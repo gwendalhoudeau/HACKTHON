@@ -54,6 +54,12 @@ class CvTile extends StatelessWidget {
                 ),
           ),
           Text(
+            "distance : ${post.distance}",
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontFamily: "Arial",
+                ),
+          ),
+          Text(
             "$action : ${post.quantity} L",
             style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontFamily: "Arial",
