@@ -162,24 +162,67 @@ class _CvHomeState extends State<CvHome> {
             mainAxisAlignment:
                 MainAxisAlignment.center, // Centre les éléments horizontalement
             children: [
-              CwButton(
-                "quantite",
-                style: Theme.of(context).textTheme.bodySmall,
-                onPressed: () {
-                  listwidget =
-                      postsToWidgets(sortPostsByQuantityDescending(listpost));
-                  setState(() {});
-                },
+              Text(
+                "Trier par : ",
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall!
+                    .copyWith(fontFamily: 'Arial'),
               ),
-              CwButton("Clermont-Ferrand",
-                  style: Theme.of(context).textTheme.bodySmall, onPressed: () {
-                listwidget = postsToWidgets(
-                    filterPostsByLocate(listpost, "Clermont-Ferrand"));
-                setState(() {});
-              }),
-              CwButton("distance",
+              Container(
+                width: 150,
+                height: 50,
+                margin: EdgeInsets.only(right: 5.0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Couleur de la bordure
+                    width: 2.0, // Épaisseur de la bordure
+                  ),
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                child: CwButton(
+                  "Quantité",
                   style: Theme.of(context).textTheme.bodySmall,
-                  onPressed: () {}),
+                  onPressed: () {
+                    listwidget =
+                        postsToWidgets(sortPostsByQuantityDescending(listpost));
+                    setState(() {});
+                  },
+                ),
+              ),
+              Container(
+                width: 150,
+                height: 50,
+                margin: EdgeInsets.only(right: 5.0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Couleur de la bordure
+                    width: 2.0, // Épaisseur de la bordure
+                  ),
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                child: CwButton("Clermont-Fd",
+                    style: Theme.of(context).textTheme.bodySmall,
+                    onPressed: () {
+                  listwidget = postsToWidgets(
+                      filterPostsByLocate(listpost, "Clermont-Ferrand"));
+                  setState(() {});
+                }),
+              ),
+              Container(
+                width: 150,
+                height: 50,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black, // Couleur de la bordure
+                    width: 2.0, // Épaisseur de la bordure
+                  ),
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                child: CwButton("Distance",
+                    style: Theme.of(context).textTheme.bodySmall,
+                    onPressed: () {}),
+              ),
             ],
           ),
           const Padding(padding: EdgeInsets.only(bottom: 30)),
@@ -196,6 +239,7 @@ class _CvHomeState extends State<CvHome> {
             Theme.of(context).primaryColor, // Couleur de fond du pied de page
         child: Container(
           height: 50.0, // Hauteur du pied de page
+          margin: EdgeInsets.only(bottom: 10.0, top: 10.0),
           alignment: Alignment.center,
           child: Row(
             mainAxisAlignment:
