@@ -40,7 +40,6 @@ class _CvCreatePostState extends State<CvCreatePost> {
         child: ListView(
           padding: EdgeInsets.all(16.0),
           children: [
-            const Spacer(),
             TextFormField(
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                     fontFamily: "Arial",
